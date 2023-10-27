@@ -37,6 +37,8 @@ public class GarcomDAO extends AbstractJdbcDAO{
     public GarcomDAO(){
         super("TB_GARCOM", "TB_GARCOM");
     }
+    
+    //Teste de git pra rapaziada
 
     @Override
     public void salvar(EntidadeDominio entidade) throws SQLException {
