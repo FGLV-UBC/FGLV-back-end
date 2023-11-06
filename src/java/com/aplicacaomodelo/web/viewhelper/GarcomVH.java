@@ -48,9 +48,9 @@ public class GarcomVH implements IViewHelper {
     @Override
     public void setView(Resultado resultado, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        request.setAttribute("listaPessoas", resultado.getEntidades());
+        request.setAttribute("listaGarcons", resultado.getEntidades());
 
-        request.getRequestDispatcher("gerenciamentoGarcom.jsp").forward(request, response);
+        request.getRequestDispatcher("registroGarcons.jsp").forward(request, response);
 
     }
 

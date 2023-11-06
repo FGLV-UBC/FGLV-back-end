@@ -1,47 +1,44 @@
 <%-- 
-    Document   : cadastroGarcom
-    Created on : 21 de set. de 2023, 20:31:24
-    Author     : autologon
+    Document   : home
+    Created on : 6 de nov. de 2023, 17:06:24
+    Author     : USER
 --%>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <title>Home</title>
+    </head>
+    <body>
 
-    <title>Cadastro de Garçons</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1>Cadastro de Garçons</h1>
+        <div class="container d-flex justify-content-around" style="margin-top: 30vh;">
+            <button class="btn btn-primary" onclick="irParaCadastroGarcom()">Ir para consulta de garçom</button>
+            <button class="btn btn-primary" onclick="voltarParaListagemGarcom()">Ir para listagem de garçom</button>
+            <button class="btn btn-primary" onclick="irParaCadastroGarcom()">Ir para cadastro de garçom</button>
+            <button class="btn btn-primary" onclick="irParaCadastroGarcom()">Alteração ou deleção de garçom</button>
+        </div>
+        
+        <script>
+            function irParaCadastroGarcom() {
+                window.location.href = "cadastroGarcom.jsp"; // Substitua com o caminho correto para sua página index
+            }
+            $(document).ready(function () {
+                $('#data').inputmask();
+            });
+            
+            function voltarParaListagemGarcom() {
+                window.location.href = "consultapessoa.jsp"; // Substitua com o caminho correto para sua página index
+            }
+            $(document).ready(function () {
+                $('#data').inputmask();
+            });
+        </script>
 
-        <form class="form-container" action="/AplicacaoModelo/SalvarPessoa" method="POST">
-            <div class="mb-3">
-                <label for="nome" class="form-label">Nome</label>
-                <input type="text" id="nome" name="nome" class="form-field form-control" placeholder="Nome" required>
 
-            </div>
-            <div class="mb-3">
-                <label for="login" class="form-label">Login</label>
-                <input type="text" id="login" name="login" class="form-field form-control" placeholder="Digite o login" required>
-
-            </div>
-            <div class="mb-3">
-                <label for="senha" class="form-label">Senha</label>
-                <input type="password" id="senha" name="senha" class="form-field form-control" placeholder="Digite a senha" required>
-
-            </div>
-            <button type="submit" id="operacao" name="operacao" class="btn btn-primary" value="SALVAR">Cadastrar</button>
-        </form>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.min.js"></script>
-</body>
+        
+    </body>
 </html>
-
-

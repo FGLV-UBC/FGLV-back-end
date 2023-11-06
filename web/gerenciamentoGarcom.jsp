@@ -105,24 +105,24 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form class="form-container" action="/FGLV/AlterarGarcom" method="POST">
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="nome" value="Nome do Garçom">
+                            <input type="text" class="form-control" id="nome" name="nome" value="${nome}" required>
                         </div>
                         <div class="mb-3">
                             <label for="login" class="form-label">Login</label>
-                            <input type="text" class="form-control" id="login" value="login_garcom">
+                            <input type="text" class="form-control" id="login" name="login" value="${login}">
                         </div>
                         <div class="mb-3">
                             <label for="senha" class="form-label">Senha</label>
-                            <input type="password" class="form-control" id="senha" placeholder="Digite a nova senha">
+                            <input type="text" class="form-control" id="senha" name="senha" value="${senha}">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Salvar Alterações</button>
+                    <button type="button" class="btn btn-primary" a>Salvar Alterações</button>
                 </div>
             </div>
         </div>

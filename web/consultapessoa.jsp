@@ -1,92 +1,35 @@
 <%-- 
-    Document   : consultapessoa
-    Created on : 22 de ago de 2023, 22:14:35
+    Document   : cadastropessoas
+    Created on : 27 de ago de 2023, 19:45:33
     Author     : Caio Gustavo
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Resultados da Consulta</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                height: 100vh;
-                background-image: url("imagens/imgindex.png");
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-            }
-
-            .container {
-                margin-top: 200px;
-                margin-right: 50px;
-                background-color: rgba(255, 255, 255, 0.8);
-                padding: 20px;
-                border-radius: 10px;
-            }
-
-            .result {
-                display: flex;
-                align-items: center;
-                margin-bottom: 10px;
-            }
-
-            .result-label {
-                font-weight: bold;
-                width: 100px;
-            }
-
-            .result-input {
-                width: 250px;
-                padding: 5px;
-            }
-
-            .button {
-                padding: 10px 20px;
-                background-color: #007bff;
-                color: #fff;
-                border: none;
-                cursor: pointer;
-                margin-top: 10px;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="css/cadastropessoas.css">
+        <script type="text/javascript" src="js/cadastropessoas.js"></script>
+        <title>Cadastro de Pessoas</title>
     </head>
-    <body>
+    <body onload="iniciar()">
         <div class="container">
-            <div class="result">
-                <label class="result-label" for="nome">Nome:</label>
-                <input class="result-input" type="text" id="nome" name="nome" value="${nome}" required>
-            </div>
-            <div class="result">
-                <label class="result-label" for="dtNascimento">Data Nascimento:</label>
-                <input class="result-input" type="text" id="dataNascimento" name="dataNascimento" placeholder="dd/mm/aaaa" data-inputmask="'alias': 'dd/mm/yyyy'" value="${dataNascimento}" required>
-            </div>
-            <div class="result">
-                <label class="result-label" for="cidade">Cidade:</label>
-                <input class="result-input" type="text" id="cidade" name="cidade" value="${cidade}" required>
-            </div>
-            <button type="button" class="button" onclick="voltarParaIndex()">Voltar</button>
+        <div class="form">
+            <form action="/FGLV/ConsultarGarcom" method="post">
+                <div class="input-container">
+                    <label for="nome">Nome da Pessoa:</label>
+                    <input type="text" id="nome" name="nome" class="input-field" required>
+                    <button type="submit" id="operacao" name="operacao" value="CONSULTAR" class="button">Pesquisar</button>
+                    <output id="msg" for="nome" >${msg}</output>
+                </div>
+            </form>
         </div>
-
-        <script>
-            function voltarParaIndex() {
-                window.location.href = "index.jsp"; // Substitua com o caminho correto para sua página index
-            }
-            $(document).ready(function () {
-                $('#data').inputmask();
-            });
-        </script>
+    </div>
     </body>
 </html>
-
