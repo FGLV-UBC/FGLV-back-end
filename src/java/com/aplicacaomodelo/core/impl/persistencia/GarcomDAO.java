@@ -114,7 +114,7 @@ public class GarcomDAO extends AbstractJdbcDAO{
         }
         PreparedStatement ps = null;
         
-        List<EntidadeDominio> pessoas = new ArrayList<>();
+        List<EntidadeDominio> garcons = new ArrayList<>();
         
         try{
             String sql = "SELECT * FROM tb_garcom";
@@ -131,7 +131,7 @@ public class GarcomDAO extends AbstractJdbcDAO{
                 g.setSenha(rs.getString("senha"));
 
                 
-                pessoas.add(g);
+                garcons.add(g);
             }
             
             
@@ -147,14 +147,14 @@ public class GarcomDAO extends AbstractJdbcDAO{
                 e.printStackTrace();
             }
         }
-        return pessoas;
+        return garcons;
     }
 
     @Override
     public EntidadeDominio visualizar(EntidadeDominio entidade) throws SQLException {
         
         if(connection == null){
-            openConnection();
+            openConnection(); 
         }
         Garcom garcom = (Garcom) entidade;
         garcom.setId(0);

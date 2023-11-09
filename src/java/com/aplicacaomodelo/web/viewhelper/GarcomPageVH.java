@@ -4,31 +4,21 @@
  */
 package com.aplicacaomodelo.web.viewhelper;
 
-/**
- *
- * @author autologon
- */
-
 import com.aplicacaomodelo.core.aplicacao.Resultado;
 import com.aplicacaomodelo.domain.EntidadeDominio;
 import com.aplicacaomodelo.domain.Garcom;
-import com.aplicacaomodelo.domain.Pessoa;
 import com.aplicacaomodelo.web.interfaces.IViewHelper;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Caio Gustavo
+ * @author USER
  */
-public class GarcomVH implements IViewHelper {
-
+public class GarcomPageVH implements IViewHelper {
+    
     @Override
     public EntidadeDominio getEntidade(HttpServletRequest request) {
         String nome = request.getParameter("nome");
@@ -48,10 +38,10 @@ public class GarcomVH implements IViewHelper {
     @Override
     public void setView(Resultado resultado, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        request.setAttribute("listaGarcons", resultado.getEntidades());
+        request.setAttribute("listaInformacoesGarcom", resultado.getEntidades());
 
-        request.getRequestDispatcher("registroGarcons.jsp").forward(request, response);
+        request.getRequestDispatcher("gerenciamentoGarcom.jsp").forward(request, response);
 
     }
-
+    
 }

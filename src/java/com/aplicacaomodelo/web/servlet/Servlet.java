@@ -14,7 +14,8 @@ import com.aplicacaomodelo.web.command.SalvarCommand;
 import com.aplicacaomodelo.web.command.VisualizarCommand;
 import com.aplicacaomodelo.web.interfaces.ICommand;
 import com.aplicacaomodelo.web.interfaces.IViewHelper;
-import com.aplicacaomodelo.web.viewhelper.GarcomVH;
+import com.aplicacaomodelo.web.viewhelper.GarcomPageVH;
+import com.aplicacaomodelo.web.viewhelper.GarconsListaVH;
 import com.aplicacaomodelo.web.viewhelper.PessoaVH;
 import java.io.IOException;
 import java.util.HashMap;
@@ -55,8 +56,10 @@ public class Servlet extends HttpServlet {
         /*A chave do mapa é o mapeamento da servlet para cada form que 
     	 * está configurado no web.xml e sendo utilizada no action do html
          */
-        vhs.put("/FGLV/SalvarGarcom", new GarcomVH());
-        vhs.put("/FGLV/ConsultarGarcom", new GarcomVH());
+        vhs.put("/FGLV/SalvarGarcom", new GarcomPageVH());
+        vhs.put("/FGLV/ConsultarGarcom", new GarconsListaVH());
+        vhs.put("/FGLV/VisualizarPorNomeGarcom", new GarconsListaVH());
+
 
 
 

@@ -16,7 +16,11 @@
     <body>
 
         <div class="container d-flex justify-content-around" style="margin-top: 30vh;">
-            <button class="btn btn-primary" onclick="irParaCadastroGarcom()">Ir para consulta de garçom</button>
+            <div>
+                <p>Not implemented yet!</p>
+                <button class="btn btn-primary" onclick="">Ir para consulta de garçom</button>
+
+            </div>
             <button class="btn btn-primary" onclick="voltarParaListagemGarcom()">Ir para listagem de garçom</button>
             <button class="btn btn-primary" onclick="irParaCadastroGarcom()">Ir para cadastro de garçom</button>
             <button class="btn btn-primary" onclick="irParaCadastroGarcom()">Alteração ou deleção de garçom</button>
