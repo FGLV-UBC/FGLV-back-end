@@ -16,11 +16,7 @@
     <body>
 
         <div class="container d-flex justify-content-around" style="margin-top: 30vh;">
-            <div>
-                <p>Not implemented yet!</p>
-                <button class="btn btn-primary" onclick="">Ir para consulta de garçom</button>
-
-            </div>
+            <button class="btn btn-primary" onclick="irParaGarcom()">Ir para consulta de garçom</button>
             <button class="btn btn-primary" onclick="voltarParaListagemGarcom()">Ir para listagem de garçom</button>
             <button class="btn btn-primary" onclick="irParaCadastroGarcom()">Ir para cadastro de garçom</button>
             <button class="btn btn-primary" onclick="irParaCadastroGarcom()">Alteração ou deleção de garçom</button>
@@ -35,6 +31,12 @@
             });
             
             function voltarParaListagemGarcom() {
+                window.location.href = "listarGarcons.jsp"; // Substitua com o caminho correto para sua página index
+            }
+            $(document).ready(function () {
+                $('#data').inputmask();
+            });
+            function irParaGarcom() {
                 window.location.href = "consultapessoa.jsp"; // Substitua com o caminho correto para sua página index
             }
             $(document).ready(function () {

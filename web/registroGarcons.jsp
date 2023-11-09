@@ -71,19 +71,23 @@
             <div class="table-container">
                 <table>
                     <tr>
+                        <th>Id</th>
                         <th>Nome</th>
-                        <th>Data de Nascimento</th>
-                        <th>Cidade</th>
+                        <th>Login</th>
+                        <th>Data de cadastro</th>
                         <th>Ações</th>
                     </tr>
                     <c:forEach var="garcom" items="${listaGarcons}" varStatus="id">
                         <tr id="${garcom.id}">
+                            <td onclick="selecionar(${garcom.id})">${garcom.id}</td>
                             <td onclick="selecionar(${garcom.id})">${garcom.nome}</td>
                             <td>
                               
                               <%--<fmt:formatDate value="${pessoa.datanascimento.time}" pattern="dd/MM/yyyy" />--%>
                             </td>
                             <td onclick="selecionar(${garcom.id})" >${garcom.login}</td>
+                            <td onclick="selecionar(${garcom.id})" >${garcom.dtCadastro}</td>
+
                             <td class="action-buttons">
                                 <button class="save-button">Editar</button>
                                 <button class="delete-button">Excluir</button>
