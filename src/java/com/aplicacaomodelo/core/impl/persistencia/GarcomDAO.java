@@ -109,34 +109,32 @@ public class GarcomDAO extends AbstractJdbcDAO{
             openConnection();
         }
         PreparedStatement pst = null;
+
         Garcom g = (Garcom) entidade;
 
 
         try{
 
             connection.setAutoCommit(false);
-
+            
             StringBuilder sql = new StringBuilder();
-            sql.append("UPDATE TB_GARCOM set nome = ?, login = ?, senha = ? WHERE id = ?");
-
-
+            sql.append("UPDATE TB_GARCOM set nome = ?, login = ?, senha = ? WHERE id_garcom = 1");
             pst = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 
+            
+            
+                
             pst.setString(1, g.getNome());
             pst.setString(2, g.getLogin());
             pst.setString(3, g.getSenha());
-            pst.setInt(4, g.getId());
-            
+            ResultSet rs = pst.executeQuery();
+
 
             pst.executeUpdate();
 
-            ResultSet rs = pst.getGeneratedKeys();
+            pst.getGeneratedKeys();
             
-
             connection.commit();
-
-
-
 
         } catch (SQLException e) {
             try {

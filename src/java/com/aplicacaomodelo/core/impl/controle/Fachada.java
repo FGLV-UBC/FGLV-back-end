@@ -100,10 +100,11 @@ public class Fachada implements IFachada {
                 entidades.add(entidade);
                 resultado.setEntidades(entidades);
                 
+                
             } catch(SQLException e){
             
                 e.printStackTrace();
-                resultado.setMsg("Não foi possível realizar o registro!");
+                resultado.setMsg("Não foi possível realizar a atualização!");
             
             }
             

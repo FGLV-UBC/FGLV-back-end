@@ -25,6 +25,7 @@ public class GarcomVH implements IViewHelper {
         
         String operacao = request.getParameter("operacao");
         Garcom garcom = new Garcom();
+        
         if (operacao.equals("SALVAR")) {
             String nome = request.getParameter("nome");
             String login = request.getParameter("login");
@@ -39,14 +40,65 @@ public class GarcomVH implements IViewHelper {
                 e.printStackTrace(); // For debugging purposes
             }
         }
+        
+        if (operacao.equals("CONSULTAR")) {
+            String nome = request.getParameter("nome");
+            String login = request.getParameter("login");
+            String senha = request.getParameter("senha");
+            
+            try {
+                garcom.setNome(nome);
+                garcom.setLogin(login);
+                garcom.setSenha(senha);
+            } catch (NumberFormatException e) {
+                // Handle the error or provide user feedback for invalid input
+                e.printStackTrace(); // For debugging purposes
+            }
+        }
+        
+        if (operacao.equals("VISUALIZAR")) {
+            String nome = request.getParameter("nome");
+            String login = request.getParameter("login");
+            String senha = request.getParameter("senha");
+            
+            try {
+                garcom.setNome(nome);
+                garcom.setLogin(login);
+                garcom.setSenha(senha);
+            } catch (NumberFormatException e) {
+                // Handle the error or provide user feedback for invalid input
+                e.printStackTrace(); // For debugging purposes
+            }
+        }
+        
+        if (operacao.equals("ALTERAR")) {
+            String nome = request.getParameter("nome");
+            String login = request.getParameter("login");
+            String senha = request.getParameter("senha");
+            
+            
+            try {
+                garcom.setNome(nome);
+                garcom.setLogin(login);
+                garcom.setSenha(senha);
+            } catch (NumberFormatException e) {
+                // Handle the error or provide user feedback for invalid input
+                e.printStackTrace(); // For debugging purposes
+            }
+        }
+        
+        
+        
+        
         return garcom;
 
     }
 
     @Override
     public void setView(Resultado resultado, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.setAttribute("garcom", resultado.getEntidades());
-        request.getRequestDispatcher("garcomTeste.jsp").forward(request, response);
+        request.setAttribute("listaGarcons", resultado.getEntidades());
+
+        request.getRequestDispatcher("admHome.jsp").forward(request, response);
     }
     
 }

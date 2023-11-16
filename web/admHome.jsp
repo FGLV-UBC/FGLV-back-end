@@ -90,15 +90,57 @@ Opção de cadastrar novo funcionário acima da listagem de garçons
     
         <tr id="${garcom.id}">
           <td>${garcom.id}</td>
-          <td>${garcom.nome}</td>
+          <td id="nome" name="nome">${garcom.nome}</td>
           <td>${garcom.login}</td>
           <td>${garcom.senha}</td>
           <td>
-            <button class="btn btn-primary" onclick="abrirModalAlterar()">Atualizar</button>
+            
+              
+            <button class="btn btn-primary" onclick="abrirModalAlterar(${garcom.id})">Atualizar</button>
             <button class="btn btn-danger" onclick="abrirModalExcluir()">Excluir</button>
           </td>
+          
+          <div id="modalAlterar${garcom.id}" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Alterar Dados do Garçom</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <!-- Adicione os campos para mostrar os dados atuais e permitir a alteração -->
+
+                  <form action="/FGLV/AlterarGarcom" method="post" >
+                      <label for="id" name="id" id="id">ID do Garçom: ${garcom.id}</label>
+                      
+                      <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" class="form-control" id="nome" name="nome" value="${garcom.nome}" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="login">Login:</label>
+                        <input type="text" class="form-control" id="login" name="login" value="${garcom.login}" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="senha">Senha:</label>
+                        <input type="text" class="form-control" id="senha" name="senha" value="${garcom.senha}">
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary" id="operacao" name="operacao" value="ALTERAR">Salvar Alterações</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="fecharModalAlterar()">Cancelar</button>
+                    </div>
+                  </form>
+              </div>
+            </div>
+        </div>
 
         </tr>
+        
+        
         
     </c:forEach>
     
@@ -123,38 +165,7 @@ Opção de cadastrar novo funcionário acima da listagem de garçons
 
 
 <!-- Modal para alteração -->
-<div id="modalAlterar" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Alterar Dados do Garçom</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Adicione os campos para mostrar os dados atuais e permitir a alteração -->
-        <div class="form-group">
-          <label for="nome">Nome:</label>
-          <input type="text" class="form-control" id="nomeAlterar" name="nomeAlterar" value="Nome Atual do Garçom" required>
-        </div>
-        <div class="form-group">
-          <label for="login">Login:</label>
-          <input type="text" class="form-control" id="loginAlterar" name="loginAlterar" value="Login Atual do Garçom" required>
-        </div>
-        <div class="form-group">
-          <label for="senha">Senha:</label>
-          <input type="password" class="form-control" id="senhaAlterar" name="senhaAlterar" placeholder="Nova Senha">
-        </div>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="alterarGarcom()">Salvar Alterações</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="fecharModalAlterar()">Cancelar</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <!-- Adicionando o Bootstrap 4 JavaScript e o jQuery (necessários para o funcionamento dos modais) -->
@@ -175,8 +186,10 @@ Opção de cadastrar novo funcionário acima da listagem de garçons
 
 
 
-  function abrirModalAlterar() {
-    $('#modalAlterar').modal('show');
+  function abrirModalAlterar(idGarcom) {
+    
+        // Abrir o modal específico
+    $('#modalAlterar' + idGarcom).modal('show');
   }
 
   function fecharModalAlterar() {

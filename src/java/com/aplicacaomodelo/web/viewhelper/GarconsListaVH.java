@@ -37,9 +37,9 @@ public EntidadeDominio getEntidade(HttpServletRequest request) {
     String login = request.getParameter("login");
     String senha = request.getParameter("senha");
     String dtCadastroString = request.getParameter("dtCadastro");
-    
-    
+
     Garcom garcom = new Garcom();
+
     garcom.setNome(nome);
     garcom.setLogin(login);
     garcom.setSenha(senha);
