@@ -70,6 +70,7 @@ public class Garcom extends EntidadeDominio{
         this.senha = senha;
     }
 
+
     
     
     

@@ -17,31 +17,36 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author USER
  */
-public class GarcomPageVH implements IViewHelper {
+public class GarcomVH implements IViewHelper {
+    
     
     @Override
     public EntidadeDominio getEntidade(HttpServletRequest request) {
-        String nome = request.getParameter("nome");
-        String login = request.getParameter("login");
-        String senha = request.getParameter("senha");
         
-
+        String operacao = request.getParameter("operacao");
         Garcom garcom = new Garcom();
-        garcom.setNome(nome);
-        garcom.setLogin(login);
-        garcom.setSenha(senha);
-
+        if (operacao.equals("SALVAR")) {
+            String nome = request.getParameter("nome");
+            String login = request.getParameter("login");
+            String senha = request.getParameter("senha");
+            
+            try {
+                garcom.setNome(nome);
+                garcom.setLogin(login);
+                garcom.setSenha(senha);
+            } catch (NumberFormatException e) {
+                // Handle the error or provide user feedback for invalid input
+                e.printStackTrace(); // For debugging purposes
+            }
+        }
         return garcom;
 
     }
 
     @Override
     public void setView(Resultado resultado, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-        request.setAttribute("listaInformacoesGarcom", resultado.getEntidades());
-
-        request.getRequestDispatcher("admHome.jsp").forward(request, response);
-
+        request.setAttribute("garcom", resultado.getEntidades());
+        request.getRequestDispatcher("garcomTeste.jsp").forward(request, response);
     }
     
 }

@@ -3,16 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USER/Downloads/FGLV/web/cadastropessoas.jsp</file>
-            <file>file:/C:/Users/USER/Downloads/FGLV/src/java/com/aplicacaomodelo/web/viewhelper/PessoaVH.java</file>
-            <file>file:/C:/Users/USER/Downloads/FGLV/web/consultapessoa.jsp</file>
+            <file>file:/C:/Users/USER/Downloads/FGLV/src/java/com/aplicacaomodelo/web/viewhelper/GarconsListaVH.java</file>
+            <file>file:/C:/Users/USER/Downloads/FGLV/web/garcom/listarGarcons.jsp</file>
             <file>file:/C:/Users/USER/Downloads/FGLV/src/java/com/aplicacaomodelo/web/viewhelper/GarcomVH.java</file>
             <file>file:/C:/Users/USER/Downloads/FGLV/src/java/com/aplicacaomodelo/web/servlet/Servlet.java</file>
-            <file>file:/C:/Users/USER/Downloads/FGLV/web/gerenciamentoGarcom.jsp</file>
-            <file>file:/C:/Users/USER/Downloads/FGLV/web/registroGarcons.jsp</file>
-            <file>file:/C:/Users/USER/Downloads/FGLV/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/USER/Downloads/FGLV/web/cadastroGarcom.jsp</file>
+            <file>file:/C:/Users/USER/Downloads/FGLV/src/java/com/aplicacaomodelo/core/impl/controle/Fachada.java</file>
+            <file>file:/C:/Users/USER/Downloads/FGLV/web/admHome.jsp</file>
             <file>file:/C:/Users/USER/Downloads/FGLV/web/index.jsp</file>
+            <file>file:/C:/Users/USER/Downloads/FGLV/web/garcom/registroGarcons.jsp</file>
         </group>
     </open-files>
 </project-private>

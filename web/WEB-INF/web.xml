@@ -17,6 +17,7 @@
         <url-pattern>/VisualizarPorNomeGarcom</url-pattern>
     </servlet-mapping>
     
+    
     <session-config>
         <session-timeout>
             30

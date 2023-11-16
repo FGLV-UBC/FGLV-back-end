@@ -104,7 +104,57 @@ public class GarcomDAO extends AbstractJdbcDAO{
 
     @Override
     public void alterar(EntidadeDominio entidade) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        if(connection == null){
+            openConnection();
+        }
+        PreparedStatement pst = null;
+        Garcom g = (Garcom) entidade;
+
+
+        try{
+
+            connection.setAutoCommit(false);
+
+            StringBuilder sql = new StringBuilder();
+            sql.append("UPDATE TB_GARCOM set nome = ?, login = ?, senha = ? WHERE id = ?");
+
+
+            pst = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+
+            pst.setString(1, g.getNome());
+            pst.setString(2, g.getLogin());
+            pst.setString(3, g.getSenha());
+            pst.setInt(4, g.getId());
+            
+
+            pst.executeUpdate();
+
+            ResultSet rs = pst.getGeneratedKeys();
+            
+
+            connection.commit();
+
+
+
+
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException el) {
+                el.printStackTrace();
+            }
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+                connection.close();
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+        
+        
     }
 
     @Override
