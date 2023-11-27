@@ -20,6 +20,29 @@
         <servlet-name>Servlet</servlet-name>
         <url-pattern>/AlterarGarcom</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet</servlet-name>
+        <url-pattern>/ExcluirGarcom</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet-mapping>
+        <servlet-name>Servlet</servlet-name>
+        <url-pattern>/SalvarProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet</servlet-name>
+        <url-pattern>/ConsultarProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet</servlet-name>
+        <url-pattern>/AlterarProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet</servlet-name>
+        <url-pattern>/ExcluirProduto</url-pattern>
+    </servlet-mapping>
+    
     
     
     <session-config>

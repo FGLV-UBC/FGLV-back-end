@@ -39,9 +39,12 @@ Opção de cadastrar novo funcionário acima da listagem de garçons
       <li class="nav-item">
         <a class="nav-link" href="#" onclick="logout()">Logout</a>
       </li>
-      <li class="nav-item">
-          <a class="nav-link" onclick="irParaAdmProdutos()">Produtos</a>
-      </li>
+      <form action="/FGLV/ConsultarProduto" method="post">
+            <input class="invisible" name="direcionadorTela" id="direcionadorTela" readonly value="adm">
+
+              <button class="btn btn-primary" type="submit" id="operacao" name="operacao" value="CONSULTAR">Ir para Produtos</button>
+                </div>
+            </form>
       <li class="nav-item">
           <a class="nav-link" onclick="irParaAdmPedidos()">Pedidos</a>
       </li>
@@ -52,6 +55,8 @@ Opção de cadastrar novo funcionário acima da listagem de garçons
 <section class="container my-4">
   <h2>Cadastrar Novo Funcionário</h2>
   <form id="formCadastro" action="/FGLV/SalvarGarcom" method="POST">
+      <output style="color:red;" id="msg">${Mensagem}</output>
+
     <div class="form-group">
       <label for="nome">Nome:</label>
       <input type="text" class="form-control" id="nome" name="nome" required>
@@ -97,7 +102,7 @@ Opção de cadastrar novo funcionário acima da listagem de garçons
             
               
             <button class="btn btn-primary" onclick="abrirModalAlterar(${garcom.id})">Atualizar</button>
-            <button class="btn btn-danger" onclick="abrirModalExcluir()">Excluir</button>
+            <button class="btn btn-danger" onclick="abrirModalExcluir(${garcom.id})">Excluir</button>
           </td>
           
           <div id="modalAlterar${garcom.id}" class="modal" tabindex="-1" role="dialog">
@@ -112,9 +117,9 @@ Opção de cadastrar novo funcionário acima da listagem de garçons
                 <div class="modal-body">
                   <!-- Adicione os campos para mostrar os dados atuais e permitir a alteração -->
 
-                  <form action="/FGLV/AlterarGarcom" method="post" >
+                  <form action="/FGLV/AlterarGarcom" method="PUT" >
                       <label for="id" name="id" id="id">ID do Garçom: ${garcom.id}</label>
-                      
+                      <input class="invisible" name="id" id="id" readonly value="${garcom.id}">
                       <div class="form-group">
                         <label for="nome">Nome:</label>
                         <input type="text" class="form-control" id="nome" name="nome" value="${garcom.nome}" required>
@@ -140,14 +145,30 @@ Opção de cadastrar novo funcionário acima da listagem de garçons
 
         </tr>
         
-        
-        
+        <form action="/FGLV/ExcluirGarcom" method="DELETE" >
+            <div id="modalExcluir${garcom.id}" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <p>Deseja realmente excluir o funcionário com id ${garcom.id} ?</p>
+                    </div>
+                    <div class="modal-footer">
+
+                        <input class="invisible" name="id" id="id" readonly value="${garcom.id}">
+                        <button class="btn btn-danger" type="submit" id="operacao" name="operacao" value="EXCLUIR">Sim</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="fecharModal()">Não</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </form>
+
     </c:forEach>
     
     </tbody>
   </table>
 </section>
-
+ 
 <!-- Modal para confirmar exclusão -->
 <div id="modalExcluir" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -175,8 +196,8 @@ Opção de cadastrar novo funcionário acima da listagem de garçons
 
 <script>
   // Função para abrir o modal de exclusão
-  function abrirModalExcluir() {
-    $('#modalExcluir').modal('show');
+  function abrirModalExcluir(idGarcom) {
+    $('#modalExcluir' + idGarcom).modal('show');
   }
 
   // Função para fechar o modal de exclusão
@@ -247,4 +268,3 @@ Opção de cadastrar novo funcionário acima da listagem de garçons
 
 </body>
 </html>
-

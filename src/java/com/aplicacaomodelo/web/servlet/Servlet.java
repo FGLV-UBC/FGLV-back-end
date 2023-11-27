@@ -14,10 +14,8 @@ import com.aplicacaomodelo.web.command.SalvarCommand;
 import com.aplicacaomodelo.web.command.VisualizarCommand;
 import com.aplicacaomodelo.web.interfaces.ICommand;
 import com.aplicacaomodelo.web.interfaces.IViewHelper;
-import com.aplicacaomodelo.web.viewhelper.GarcomPageVH;
 import com.aplicacaomodelo.web.viewhelper.GarcomVH;
-import com.aplicacaomodelo.web.viewhelper.GarconsListaVH;
-import com.aplicacaomodelo.web.viewhelper.PessoaVH;
+import com.aplicacaomodelo.web.viewhelper.ProdutoVH;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,12 +55,27 @@ public class Servlet extends HttpServlet {
         /*A chave do mapa é o mapeamento da servlet para cada form que 
     	 * está configurado no web.xml e sendo utilizada no action do html
          */
+        
+        //Rotas do Garçom
         vhs.put("/FGLV/SalvarGarcom", new GarcomVH());
         vhs.put("/FGLV/ConsultarGarcom", new GarcomVH());
         vhs.put("/FGLV/VisualizarPorNomeGarcom", new GarcomVH());
         vhs.put("/FGLV/AlterarGarcom", new GarcomVH());
+        vhs.put("/FGLV/ExcluirGarcom", new GarcomVH());
+        
+        
+        //Rotas do Produto
+        vhs.put("/FGLV/SalvarProduto", new ProdutoVH());
+        vhs.put("/FGLV/ConsultarProduto", new ProdutoVH());
+        vhs.put("/FGLV/AlterarProduto", new ProdutoVH());
+        vhs.put("/FGLV/ExcluirProduto", new ProdutoVH());
 
 
+
+        
+
+
+        //usarHífen
 
 
 

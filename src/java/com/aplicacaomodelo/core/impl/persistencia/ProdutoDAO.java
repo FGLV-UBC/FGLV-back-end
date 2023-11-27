@@ -4,8 +4,10 @@
  */
 package com.aplicacaomodelo.core.impl.persistencia;
 
+import com.aplicacaomodelo.domain.Categoria;
 import com.aplicacaomodelo.domain.EntidadeDominio;
 import com.aplicacaomodelo.domain.Garcom;
+import com.aplicacaomodelo.domain.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,20 +23,20 @@ import java.util.List;
  *
  * @author Caio Gustavo
  */
-public class GarcomDAO extends AbstractJdbcDAO{
+public class ProdutoDAO extends AbstractJdbcDAO{
 
-    public GarcomDAO(Connection connection, String table, String idTable) {
+    public ProdutoDAO(Connection connection, String table, String idTable) {
         super(connection, table, idTable);
     }
     
-    public GarcomDAO(String table, String idTable) {
-        super("TB_GARCOM", "ID_GARCOM");
+    public ProdutoDAO(String table, String idTable) {
+        super("TB_PRODUTO", "ID");
     }
-    public GarcomDAO(Connection cx){
-        super(cx, "TB_GARCOM", "ID_GARCOM");
+    public ProdutoDAO(Connection cx){
+        super(cx, "TB_PRODUTO", "ID");
     }
-    public GarcomDAO(){
-        super("TB_GARCOM", "ID_GARCOM");
+    public ProdutoDAO(){
+        super("TB_PRODUTO", "ID");
     }
 
     @Override
@@ -44,7 +46,7 @@ public class GarcomDAO extends AbstractJdbcDAO{
             openConnection();
         }
         PreparedStatement pst = null;
-        Garcom g = (Garcom) entidade;
+        Produto p = (Produto) entidade;
 
 
         try{
@@ -52,32 +54,43 @@ public class GarcomDAO extends AbstractJdbcDAO{
             connection.setAutoCommit(false);
 
             StringBuilder sql = new StringBuilder();
-            sql.append("INSERT INTO TB_GARCOM(login, senha, nome, dt_cadastro)");
-            sql.append("VALUES (?,?,?,?)");
+            sql.append("INSERT INTO TB_PRODUTO(nome, descricao, valor, categoria, dt_cadastro)");
+            sql.append("VALUES (?,?,?,?,?)");
 
 
             pst = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 
-            pst.setString(1, g.getLogin());
-            pst.setString(2, g.getSenha());
-            pst.setString(3, g.getNome());
+            pst.setString(1, p.getNome());
+            pst.setString(2, p.getDescricao());
+            pst.setDouble(3, p.getValor());
+            
+            try{
+                Categoria categorias = Categoria.valueOf(p.getCategoria());
+                pst.setString(4, p.getCategoria());
+            }catch(IllegalArgumentException e){
+                e.printStackTrace();
+            }
+            
+            //pst.setString(4, p.getCategoria());// debugar isso aqui
+
+            
 
             Calendar calendar = Calendar.getInstance();
 
             Timestamp ts =  new Timestamp(calendar.getTime().getTime());
 
-            pst.setTimestamp(4, ts);
+            pst.setTimestamp(5, ts);
 
             pst.executeUpdate();
 
             ResultSet rs = pst.getGeneratedKeys();
-            int idGarcom=0;
+            int idProduto=0;
 
             if(rs.next()){
-                idGarcom = rs.getInt(1);
+                idProduto = rs.getInt(1);
             }
 
-            g.setId(idGarcom);
+            p.setId(idProduto);
 
             connection.commit();
 
@@ -110,7 +123,7 @@ public class GarcomDAO extends AbstractJdbcDAO{
         }
         PreparedStatement pst = null;
         EntidadeDominio entidade2 = entidade;
-        Garcom g = (Garcom) entidade;
+        Produto p = (Produto) entidade;
 
 
         try{
@@ -118,14 +131,16 @@ public class GarcomDAO extends AbstractJdbcDAO{
             connection.setAutoCommit(false);
             
             StringBuilder sql = new StringBuilder();
-            sql.append("UPDATE TB_GARCOM set nome = ?, login = ?, senha = ? WHERE id_garcom = ?");
+            sql.append("UPDATE TB_PRODUTO set nome = ?, descricao = ?, valor = ?, categoria = ? WHERE id = ?");
             pst = connection.prepareStatement(sql.toString());
 
                 
-            pst.setString(1, g.getNome());
-            pst.setString(2, g.getLogin());
-            pst.setString(3, g.getSenha());
-            pst.setInt(4, g.getId());
+            pst.setString(1, p.getNome());
+            pst.setString(2, p.getDescricao());
+            pst.setDouble(3, p.getValor());
+            pst.setString(4, p.getCategoria());
+            pst.setInt(5, p.getId());
+
 
             //ResultSet rs = pst.executeQuery();
 
@@ -163,24 +178,25 @@ public class GarcomDAO extends AbstractJdbcDAO{
         }
         PreparedStatement ps = null;
         
-        List<EntidadeDominio> garcons = new ArrayList<>();
+        List<EntidadeDominio> produtos = new ArrayList<>();
         
         try{
-            String sql = "SELECT * FROM tb_garcom";
+            String sql = "SELECT * FROM tb_produto ORDER BY categoria";
             
             ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             
             while (rs.next()) {
-                Garcom g = new Garcom();
+                Produto p = new Produto();
                 
-                g.setId(rs.getInt("id_garcom"));
-                g.setNome(rs.getString("nome"));
-                g.setLogin(rs.getString("login"));
-                g.setSenha(rs.getString("senha"));
+                p.setId(rs.getInt("id"));
+                p.setNome(rs.getString("nome"));
+                p.setDescricao(rs.getString("descricao"));
+                p.setValor(rs.getDouble("valor"));
+                p.setCategoria(rs.getString("categoria"));
 
                 
-                garcons.add(g);
+                produtos.add(p);
             }
             
             
@@ -196,30 +212,30 @@ public class GarcomDAO extends AbstractJdbcDAO{
                 e.printStackTrace();
             }
         }
-        return garcons;
+        return produtos;
     }
 
     @Override
     public EntidadeDominio visualizar(EntidadeDominio entidade) throws SQLException {
         
-        if(connection == null){
+        /*if(connection == null){
             openConnection(); 
         }
-        Garcom garcom = (Garcom) entidade;
-        garcom.setId(0);
+        Produto produto = (Produto) entidade;
+        produto.setId(0);
         try {
             
             PreparedStatement ps;            
-            String sql = "SELECT * FROM tb_garcom WHERE nome=?";
+            String sql = "SELECT * FROM tb_produto WHERE nome=?";
             ps = connection.prepareStatement(sql);
-            ps.setString(1, garcom.getNome());
+            ps.setString(1, produto.getNome());
             
             ResultSet rs = ps.executeQuery();
             
             if(rs.next()){
-                garcom.setId(rs.getInt("id_garcom"));
-                garcom.setNome(rs.getString("nome"));
-                garcom.setLogin(rs.getString("login"));
+                produto.setId(rs.getInt("id"));
+                produto.setNome(rs.getString("nome"));
+                produto.setLogin(rs.getString("login"));
                 
                                 
                 
@@ -239,7 +255,7 @@ public class GarcomDAO extends AbstractJdbcDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-        return garcom;
-    } 
+        */
+        return null;
+    }
 }

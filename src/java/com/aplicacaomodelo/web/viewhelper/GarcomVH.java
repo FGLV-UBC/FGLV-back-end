@@ -72,12 +72,34 @@ public class GarcomVH implements IViewHelper {
         }
         
         if (operacao.equals("ALTERAR")) {
+            String id = request.getParameter("id");
             String nome = request.getParameter("nome");
             String login = request.getParameter("login");
             String senha = request.getParameter("senha");
             
             
+            
             try {
+                garcom.setId( Integer.parseInt(id));
+                garcom.setNome(nome);
+                garcom.setLogin(login);
+                garcom.setSenha(senha);
+            } catch (NumberFormatException e) {
+                // Handle the error or provide user feedback for invalid input
+                e.printStackTrace(); // For debugging purposes
+            }
+        }
+        
+        if (operacao.equals("EXCLUIR")) {
+            String id = request.getParameter("id");
+            String nome = request.getParameter("nome");
+            String login = request.getParameter("login");
+            String senha = request.getParameter("senha");
+            
+            
+            
+            try {
+                garcom.setId( Integer.parseInt(id));
                 garcom.setNome(nome);
                 garcom.setLogin(login);
                 garcom.setSenha(senha);
@@ -96,7 +118,16 @@ public class GarcomVH implements IViewHelper {
 
     @Override
     public void setView(Resultado resultado, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.setAttribute("listaGarcons", resultado.getEntidades());
+        if(resultado.getMsg() != null){
+            response.getWriter().write(resultado.getMsg());
+            request.setAttribute("Mensagem", resultado.getMsg());
+        
+        }else{
+            request.setAttribute("listaGarcons", resultado.getEntidades());
+
+        }
+        
+        
 
         request.getRequestDispatcher("admHome.jsp").forward(request, response);
     }
