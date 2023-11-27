@@ -68,8 +68,8 @@
             
             <c:if test="${produtoAntigo eq produto.categoria}">
                 <c:set var="produtoAntigo" value="${produto.categoria}"/>
-                <div class="row" >
-                <div class="col-md-3">
+                <div class="" >
+                <div class="">
                   <div class="card">
                     <div class="card-body" onclick="abrirModalConfirmar(${produto.id})">
                       <h5 class="card-title">${produto.nome}</h5>
@@ -85,8 +85,8 @@
             <c:if test="${produtoAntigo ne produto.categoria}">
                 <c:set var="produtoAntigo" value=""/>
                 <h1 class="my-4">${produto.categoria}</h1>
-                <div class="row" >
-                <div class="col-md-3">
+                <div class="" >
+                <div class="">
                   <div class="card">
                     <div class="card-body" onclick="abrirModalConfirmar(${produto.id})">
                       <h5 class="card-title">${produto.nome}</h5>
