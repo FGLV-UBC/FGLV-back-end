@@ -15,6 +15,9 @@ import com.aplicacaomodelo.web.command.VisualizarCommand;
 import com.aplicacaomodelo.web.interfaces.ICommand;
 import com.aplicacaomodelo.web.interfaces.IViewHelper;
 import com.aplicacaomodelo.web.viewhelper.GarcomVH;
+import com.aplicacaomodelo.web.viewhelper.ItemPedidoVH;
+import com.aplicacaomodelo.web.viewhelper.MesaVH;
+import com.aplicacaomodelo.web.viewhelper.PedidoVH;
 import com.aplicacaomodelo.web.viewhelper.ProdutoVH;
 import java.io.IOException;
 import java.util.HashMap;
@@ -69,11 +72,27 @@ public class Servlet extends HttpServlet {
         vhs.put("/FGLV/ConsultarProduto", new ProdutoVH());
         vhs.put("/FGLV/AlterarProduto", new ProdutoVH());
         vhs.put("/FGLV/ExcluirProduto", new ProdutoVH());
-
-
-
         
-
+        
+        //Rotas da Mesa
+        vhs.put("/FGLV/SalvarMesa", new MesaVH());
+        vhs.put("/FGLV/ConsultarMesa", new MesaVH());
+        vhs.put("/FGLV/AlterarMesa", new MesaVH());
+        vhs.put("/FGLV/ExcluirMesa", new MesaVH());
+        
+        
+        //Rotas do ItemPedido
+        vhs.put("/FGLV/SalvarItemPedido", new ItemPedidoVH());
+        vhs.put("/FGLV/ConsultarItemPedido", new ItemPedidoVH());
+        vhs.put("/FGLV/AlterarItemPedido", new ItemPedidoVH());
+        vhs.put("/FGLV/ExcluirItemPedido", new ItemPedidoVH());
+        
+        
+        //Rotas do Pedido
+        vhs.put("/FGLV/SalvarPedido", new PedidoVH());
+        vhs.put("/FGLV/ConsultarPedido", new PedidoVH());
+        vhs.put("/FGLV/AlterarPedido", new PedidoVH());
+        vhs.put("/FGLV/ExcluirPedido", new PedidoVH());
 
         //usarHífen
 
@@ -122,7 +141,6 @@ public class Servlet extends HttpServlet {
 		 * o resultado para o usuário
          */
         vh.setView(resultado, request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

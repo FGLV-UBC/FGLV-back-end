@@ -6,8 +6,7 @@ package com.aplicacaomodelo.web.viewhelper;
 
 import com.aplicacaomodelo.core.aplicacao.Resultado;
 import com.aplicacaomodelo.domain.EntidadeDominio;
-import com.aplicacaomodelo.domain.Pedido;
-import com.aplicacaomodelo.domain.Produto;
+import com.aplicacaomodelo.domain.ItemPedido;
 import com.aplicacaomodelo.web.interfaces.IViewHelper;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -18,33 +17,29 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author USER
  */
-public class ProdutoVH implements IViewHelper{
-    
+public class ItemPedidoVH  implements IViewHelper{
     
     @Override
     public EntidadeDominio getEntidade(HttpServletRequest request) {
         
-        String direcionadorTela = request.getParameter("direcionadorTela");
-        Pedido pedido = new Pedido();
-
-        
         String operacao = request.getParameter("operacao");
-        Produto produto = new Produto();
+        ItemPedido itemPedido = new ItemPedido();
         
         if (operacao.equals("SALVAR")){
+            //String id_pedido = request.getParameter("id_pedido");
             String nome = request.getParameter("nome");
-            String descricao = request.getParameter("descricao");
             String valor = request.getParameter("valor");
-            
             String categoria = request.getParameter("categoria");
+            String quantidade = request.getParameter("quantidade");
 
             
             try {
-                produto.setNome(nome);
-                produto.setDescricao(descricao);
+                //itemPedido.setId_pedido(Integer.parseInt(id_pedido));
+                itemPedido.setNome(nome);
+                itemPedido.setValor(Double.parseDouble(valor));
+                itemPedido.setCategoria(categoria);
+                itemPedido.setQuantidade(Integer.parseInt(quantidade));
                 
-                produto.setValor(Double.parseDouble(valor));
-                produto.setCategoria(categoria);
             } catch (NumberFormatException e) {
                 // Handle the error or provide user feedback for invalid input
                 e.printStackTrace(); // For debugging purposes
@@ -52,17 +47,19 @@ public class ProdutoVH implements IViewHelper{
         }
         
         if (operacao.equals("CONSULTAR")){
+            String id_pedido = request.getParameter("id_pedido");
             String nome = request.getParameter("nome");
-            String descricao = request.getParameter("descricao");
-            String valor = request.getParameter("valor"); //OLHA QUI EMMM
-            
+            String valor = request.getParameter("valor");
             String categoria = request.getParameter("categoria");
+            String quantidade = request.getParameter("quantidade");
 
             
             try {
-                produto.setNome(nome);
-                produto.setDescricao(descricao);
-                produto.setCategoria(categoria);
+                itemPedido.setId_pedido(Integer.parseInt(id_pedido));
+                itemPedido.setNome(nome);
+                itemPedido.setValor(Double.parseDouble(valor));
+                itemPedido.setCategoria(categoria);
+                itemPedido.setQuantidade(Integer.parseInt(quantidade));
             } catch (NumberFormatException e) {
                 // Handle the error or provide user feedback for invalid input
                 e.printStackTrace(); // For debugging purposes
@@ -70,19 +67,22 @@ public class ProdutoVH implements IViewHelper{
         }
         if (operacao.equals("ALTERAR")){
             String id = request.getParameter("id");
-            String nome = request.getParameter("nome");
-            String descricao = request.getParameter("descricao");
-            String valor = request.getParameter("valor"); //OLHA QUI EMMM
             
+            String id_pedido = request.getParameter("id_pedido");
+            String nome = request.getParameter("nome");
+            String valor = request.getParameter("valor");
             String categoria = request.getParameter("categoria");
+            String quantidade = request.getParameter("quantidade");
 
             
             try {
-                produto.setId( Integer.parseInt(id));
-                produto.setNome(nome);
-                produto.setValor(Double.parseDouble(valor));
-                produto.setDescricao(descricao);
-                produto.setCategoria(categoria);
+                itemPedido.setId( Integer.parseInt(id));
+                
+                itemPedido.setId_pedido(Integer.parseInt(id_pedido));
+                itemPedido.setNome(nome);
+                itemPedido.setValor(Double.parseDouble(valor));
+                itemPedido.setCategoria(categoria);
+                itemPedido.setQuantidade(Integer.parseInt(quantidade));
             } catch (NumberFormatException e) {
                 // Handle the error or provide user feedback for invalid input
                 e.printStackTrace(); // For debugging purposes
@@ -90,24 +90,28 @@ public class ProdutoVH implements IViewHelper{
         }
         if (operacao.equals("EXCLUIR")){
             String id = request.getParameter("id");
-            String nome = request.getParameter("nome");
-            String descricao = request.getParameter("descricao");
-            String valor = request.getParameter("valor"); //OLHA QUI EMMM
             
+            String id_pedido = request.getParameter("id_pedido");
+            String nome = request.getParameter("nome");
+            String valor = request.getParameter("valor");
             String categoria = request.getParameter("categoria");
+            String quantidade = request.getParameter("quantidade");
 
             
             try {
-                produto.setId( Integer.parseInt(id));
-                produto.setNome(nome);
-                produto.setDescricao(descricao);
-                produto.setCategoria(categoria);
+                itemPedido.setId( Integer.parseInt(id));
+                
+                itemPedido.setId_pedido(Integer.parseInt(id_pedido));
+                itemPedido.setNome(nome);
+                itemPedido.setValor(Double.parseDouble(valor));
+                itemPedido.setCategoria(categoria);
+                itemPedido.setQuantidade(Integer.parseInt(quantidade));
             } catch (NumberFormatException e) {
                 // Handle the error or provide user feedback for invalid input
                 e.printStackTrace(); // For debugging purposes
             }
         }
-     return produto;   
+     return itemPedido;   
     }
     
     @Override
@@ -117,37 +121,13 @@ public class ProdutoVH implements IViewHelper{
             request.setAttribute("Mensagem", resultado.getMsg());
         
         }else{
-            request.setAttribute("listaProdutos", resultado.getEntidades());
+            request.setAttribute("listaItemPedido", resultado.getEntidades());
 
         }
         
-        String operacao =request.getParameter("operacao");
-
-        String direcionadorTela = request.getParameter("direcionadorTela");
-        
-        if(operacao.equals("SALVAR")|| operacao.equals("ALTERAR") || operacao.equals("EXCLUIR")){
-            request.getRequestDispatcher("admProdutos.jsp").forward(request, response);
-        
-        } else if (operacao.equals("CONSULTAR")){
-        
-            if(direcionadorTela.equals("cardapio")){
-
-                request.getRequestDispatcher("pedidoCardapio.jsp").forward(request, response);
-
-            }else if(direcionadorTela.equals("adm") || operacao.equals("SALVAR")  ){
-        
-            request.getRequestDispatcher("admProdutos.jsp").forward(request, response);
-
-            
-            }
-        
-        }
-        
-        
-        
         
 
-
+        request.getRequestDispatcher("pedidoConfirmar.jsp").forward(request, response);
     }
     
 }

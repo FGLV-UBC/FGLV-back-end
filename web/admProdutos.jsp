@@ -25,9 +25,9 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                   <ul class="navbar-nav">
-                    <li class="nav-item">
+                      <%-- <li class="nav-item">
                       <a class="nav-link" onclick="logout()">Logout</a>
-                    </li>
+                        </li> --%>
                     <li class="nav-item">
                       <form action="/FGLV/ConsultarGarcom" method="post">
                         <button class="btn btn-primary" onclick="irParaAdmHome()()" type="submit" id="operacao"
@@ -35,9 +35,9 @@
                 </div>
                 </form>
                 </li>
-                <li class="nav-item">
+                <%--<li class="nav-item">
                   <a class="nav-link" onclick="irParaAdmPedidos()()">Pedidos</a>
-                </li>
+                </li>--%>
                 </ul>
                 </div>
               </nav>

@@ -17,30 +17,17 @@
         <div class="container d-flex justify-content-around" style="margin-top: 30vh;">
             <form action="/FGLV/ConsultarGarcom" method="post">
                 <input class="invisible" name="direcionadorTela" id="direcionadorTela" readonly value="adm">
-                <button class="btn btn-primary" onclick="irParaAdm()" type="submit" id="operacao" name="operacao" value="CONSULTAR">Ir para Adm</button>
+                <button class="btn btn-primary" type="submit" id="operacao" name="operacao" value="CONSULTAR">Ir para Adm</button>
             </form>
             
-            <form action="/FGLV/ConsultarProduto" method="post">
+            <form action="/FGLV/ConsultarProduto?id_mesa=1" method="post">
                 <input class="invisible" name="direcionadorTela" id="direcionadorTela" readonly value="cardapio">
 
-                <button class="btn btn-primary" onclick="irParaCardapio()" type="submit" id="operacao" name="operacao" value="CONSULTAR">Ir para Cardápio</button>
+                <button class="btn btn-primary" type="submit" id="operacao" name="operacao" value="CONSULTAR">Ir para Cardápio Mesa 1</button>
             </form>
+            
+            
         </div>
         
-        <script>
-           
-            function irParaAdm() {
-                window.location.href = "admHome.jsp"; // Substitua com o caminho correto para sua página index
-            }
-            $(document).ready(function () {
-                $('#data').inputmask();
-            });
-            function irParaCardapio() {
-                window.location.href = "pedidoCardapio.jsp"; // Substitua com o caminho correto para sua página index
-            }
-            $(document).ready(function () {
-                $('#data').inputmask();
-            });
-        </script>
     </body>
 </html>

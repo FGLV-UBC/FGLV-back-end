@@ -50,103 +50,30 @@
         </div>
     </nav>
 <br><br><br>
-<div class="container" >
-  <h1 class="my-4">Seu pedido</h1>
 
-  <div class="row" >
-    <div class="col-md-3">
-      <div class="card">
-        <div class="card-body" onclick="abrirModalConfirmar()">
-          <h5 class="card-title">Produto 1</h5>
-          <p class="card-text">Descrição do Produto 1.</p>
-          <p class="card-text">R$ 10,00</p>
-        </div>
-      </div>
-    </div>
+  <div>
+    <h1 class="my-4 container">Seu pedido</h1>
+    
+        <c:forEach var="item_pedido" items="${listaItemPedido}" varStatus="id">
 
-    <div class="col-md-3">
-      <div class="card">
-        <div class="card-body" onclick="abrirModalConfirmar()">
-          <h5 class="card-title">Produto 2</h5>
-          <p class="card-text">Descrição do Produto 2.</p>
-          <p class="card-text">R$ 15,00</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="card">
-        <div class="card-body" onclick="abrirModalConfirmar()">
-          <h5 class="card-title">Produto 3</h5>
-          <p class="card-text">Descrição do Produto 3.</p>
-          <p class="card-text">R$ 20,00</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="card">
-        <div class="card-body" onclick="abrirModalConfirmar()">
-          <h5 class="card-title">Produto 4</h5>
-          <p class="card-text">Descrição do Produto 4.</p>
-          <p class="card-text">R$ 25,00</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-  
+            <div class="container" style="">
 
 
-    <div id="modalProdutoEspecifico" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form action="/FGLV/SalvarItemPedido" method="PUT" >
-
-                    <div class="modal-header">
-                        <h5 class="modal-title">${produto.nome}</h5>
-                        <input class="invisible" name="id" id="id" readonly value="${produto.id}">
-
-                        <input class="invisible" name="nome" id="nome" readonly value="${produto.nome}">
-
-                        <input class="invisible" name="categoria" id="categoria" readonly value="${produto.categoria}">
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-
-                        
-                        <div class="form-group">
-                            <label for="descricao">Descrição:</label>
-                            <label for="descricao">${produto.descricao}</label>
-                            <input type="text" class="invisible" id="descricao" name="descricao" readonly value="${garcom.nome}" required>
+                      <div class="card">
+                        <div class="card-body" onclick="abrirModalConfirmar()">
+                          <h5 class="card-title">${item_pedido.nome}</h5>
+                          <p class="card-text">${item_pedido.valor}</p>
                         </div>
-                        <div class="form-group">
-                            <label for="valor">Valor:</label>
-                            <label for="descricao">${produto.valor}</label>
-                        </div>
-                        <div class="form-group">
-                            <label for="quantidade">Quantidade:</label>
-                            <input class="text-center" style="width: 50px;" type="number" min="1"name="" id="">
-                        </div>
-                        
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" id="operacao" name="operacao" value="SALVAR">Adicionar ao pedido</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="fecharModalConfirmar()">Cancelar</button>
-                    </div>
-                </form>
+                      </div>
             </div>
-        </div>
-    </div>
 
-  
+
+             <br>
+
+        </c:forEach>          
+        <button class="btn btn-success d-flex justify-content-center text-center" style="margin: 0 auto; width: 300px; height: 65px; font-size: 30px">Confirmar Pedido</button>
+
+    </div>        
 
   <footer class="page-footer font-small" style="background-color: rgb(179, 179, 179); margin-top: 100px;">
 

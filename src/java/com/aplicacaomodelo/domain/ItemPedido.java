@@ -58,6 +58,14 @@ public class ItemPedido extends EntidadeDominio{
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
     
     
     

@@ -36,10 +36,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" onclick="irParaPedidoConfirmar()">
-                <button class="btn btn-success">
-                    <h5>Confirmar ou Alterar Pedido</h5>
-                </button>
+                
+                <form action="/FGLV/ConsultarItemPedido?id_mesa=1">
+                    <a class="nav-link">
+                    <button class="btn btn-success" type="submit" id="operacao" name="operacao" value="CONSULTAR">
+                        <h5>Confirmar ou Alterar Pedido</h5>
+                    </button>
+                </form>
             </a>
             </li>
           </ul>
@@ -112,10 +115,12 @@
     <div id="modalProdutoEspecifico${produto.id}" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="/FGLV/SalvarItemPedido" method="PUT" >
+                <form action="/FGLV/SalvarItemPedido?id_mesa=1" method="POST">
 
                     <div class="modal-header">
                         <h5 class="modal-title">${produto.nome}</h5>
+                        <%--<input class="invisible" name="id_pedido" id="id_pedido" readonly value="1">--%>
+
                         <input class="invisible" name="id" id="id" readonly value="${produto.id}">
 
                         <input class="invisible" name="nome" id="nome" readonly value="${produto.nome}">
@@ -128,20 +133,17 @@
                     </div>
 
                     <div class="modal-body">
-
                         
                         <div class="form-group">
-                            <label for="descricao">Descrição:</label>
-                            <label for="descricao">${produto.descricao}</label>
-                            <input type="text" class="invisible" id="descricao" name="descricao" readonly value="${garcom.nome}" required>
-                        </div>
-                        <div class="form-group">
                             <label for="valor">Valor:</label>
-                            <label for="descricao">${produto.valor}</label>
+                            <label for="descricao">${produto.valor}</label>                            
+                            <input class="invisible" style="width: 50px;" type="number" min="1" name="valor" id="valor" value="${produto.valor}" readonly>
+
+                            
                         </div>
                         <div class="form-group">
-                            <label for="quantidade">Quantidade:</label>
-                            <input class="text-center" style="width: 50px;" type="number" min="1"name="" id="">
+                            <label for="quantidade">Quantidade:</label>     
+                            <input class="text-center" style="width: 50px;" type="number" min="1" name="quantidade" id="quantidade">
                         </div>
                         
 
@@ -179,12 +181,12 @@
         $('#modalProdutoEspecifico').modal('hide');
     }
     
-    function irParaPedidoConfirmar() {
+    /*function irParaPedidoConfirmar() {
         window.location.href = "pedidoConfirmar.jsp"; // Substitua com o caminho correto para sua página index
     }
     $(document).ready(function () {
         $('#data').inputmask();
-    });
+    });*/
   </script>
 
 

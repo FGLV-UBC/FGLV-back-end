@@ -36,18 +36,18 @@ Opção de cadastrar novo funcionário acima da listagem de garçons
   </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item">
+      <%-- <li class="nav-item">
         <a class="nav-link" href="#" onclick="logout()">Logout</a>
-      </li>
+        </li>--%>
       <form action="/FGLV/ConsultarProduto" method="post">
             <input class="invisible" name="direcionadorTela" id="direcionadorTela" readonly value="adm">
 
               <button class="btn btn-primary" type="submit" id="operacao" name="operacao" value="CONSULTAR">Ir para Produtos</button>
                 </div>
             </form>
-      <li class="nav-item">
+      <%-- <li class="nav-item">
           <a class="nav-link" onclick="irParaAdmPedidos()">Pedidos</a>
-      </li>
+      </li>--%>
     </ul>
   </div>
 </nav>

@@ -7,12 +7,18 @@ package com.aplicacaomodelo.core.impl.controle;
 import com.aplicacaomodelo.core.aplicacao.Resultado;
 import com.aplicacaomodelo.core.impl.negocio.ValidarNomeGarcom;
 import com.aplicacaomodelo.core.impl.persistencia.GarcomDAO;
+import com.aplicacaomodelo.core.impl.persistencia.ItemPedidoDAO;
+import com.aplicacaomodelo.core.impl.persistencia.MesaDAO;
+import com.aplicacaomodelo.core.impl.persistencia.PedidoDAO;
 import com.aplicacaomodelo.core.impl.persistencia.ProdutoDAO;
 import com.aplicacaomodelo.core.interfaces.IDAO;
 import com.aplicacaomodelo.core.interfaces.IFachada;
 import com.aplicacaomodelo.core.interfaces.IStrategy;
 import com.aplicacaomodelo.domain.EntidadeDominio;
 import com.aplicacaomodelo.domain.Garcom;
+import com.aplicacaomodelo.domain.ItemPedido;
+import com.aplicacaomodelo.domain.Mesa;
+import com.aplicacaomodelo.domain.Pedido;
 import com.aplicacaomodelo.domain.Produto;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -47,11 +53,21 @@ public class Fachada implements IFachada {
         rns = new HashMap<String, Map<String, List<IStrategy>>>();
         
         /* Criando instâncias dos DAOs a serem utilizados*/
+        
         GarcomDAO garcomDAO = new GarcomDAO();
         ProdutoDAO produtoDAO = new ProdutoDAO();
+        MesaDAO mesaDAO = new MesaDAO();
+        ItemPedidoDAO itemPedidoDAO = new ItemPedidoDAO();
+        PedidoDAO pedidoDAO = new PedidoDAO();
+
+
         
         daos.put(Garcom.class.getName(), garcomDAO);
         daos.put(Produto.class.getName(), produtoDAO);
+        daos.put(Mesa.class.getName(), mesaDAO);
+        daos.put(ItemPedido.class.getName(), itemPedidoDAO);
+        daos.put(Pedido.class.getName(), pedidoDAO);
+
 
         
         //Instancia o mapa de validacoes da entitade garcom

@@ -11,15 +11,13 @@ package com.aplicacaomodelo.domain;
 public class Pedido extends EntidadeDominio{
     
     private int id_mesa;
-    private double valorTotalPedido;
-    private boolean pedidoPronto;
-    private boolean pedidoFeito;
+    private boolean pedidoPronto = false;
+    private boolean pedidoFeito = false;
     
     public Pedido(){}
 
-    public Pedido(int id_mesa, double valorTotalPedido, boolean pedidoPronto, boolean pedidoFeito) {
+    public Pedido(int id_mesa,  boolean pedidoPronto, boolean pedidoFeito) {
         this.id_mesa = id_mesa;
-        this.valorTotalPedido = valorTotalPedido;
         this.pedidoPronto = pedidoPronto;
         this.pedidoFeito = pedidoFeito;
     }
@@ -30,14 +28,6 @@ public class Pedido extends EntidadeDominio{
 
     public void setId_mesa(int id_mesa) {
         this.id_mesa = id_mesa;
-    }
-
-    public double getValorTotalPedido() {
-        return valorTotalPedido;
-    }
-
-    public void setValorTotalPedido(double valorTotalPedido) {
-        this.valorTotalPedido = valorTotalPedido;
     }
 
     public boolean isPedidoPronto() {
